@@ -19,6 +19,19 @@ class MainActivity : AppCompatActivity() {
         val buttonCheck = findViewById<Button>(R.id.searchButton)
         val textResult = findViewById<TextView>(R.id.txtResult)
 
+        buttonCheck.setOnClickListener {
+            val year = editYear.text.toString().toInt()
+            val generation = when (year) {
+                in 1946..1964 -> "Baby Boomers"
+                in 1965..1980 -> "Generation X"
+                in 1981..1996 -> "Millennials"
+                in 1997..2012 -> "Generation Z"
+                in 2013..2025 -> "Generation Alpha"
+                else -> "Unknown Generation"
+            }
+            textResult.text = "You belong to $generation"
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
